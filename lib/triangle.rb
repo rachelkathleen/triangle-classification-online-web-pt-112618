@@ -8,18 +8,19 @@ class Triangle
    end
 
   def kind
-    if side_one + side_two =< side_three || side_one + side_three =< side_two || side_two + side_three =< side_two || side_one > 0 || side_two > 0 || side_three > 0
-      raise TriangleError
-    elsif side_one == side_two && side_two == side_three && side_one == side_three
+    is_a_triangle
+    if a == b && b == c
       :equilateral
-    elsif side_one != side_two && side_one != side_three && side_two != side_three
-      :scalene
-    else
+    elsif a == b || b == c || a == c
       :isosceles
+    else 
+      :scalene
     end
   end
 
+  def is_a_triangle
+    triangle = [(a + b > c), (a + c > b), (b + c > a)]
+
   class TriangleError < StandardError
   end
-end
 end
